@@ -43,6 +43,8 @@ const server = http.createServer((req, res)=>{
     // console.log(parsed_add.query)
 });
 
+fs.createReadStream()
+
 const port = 5000;
 server.listen(port);
 
