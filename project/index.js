@@ -16,7 +16,7 @@ app.config = {
 
 // Function (prints a random quote)
 
-app.printAQuote = function printAQuote() {
+app.printAQuote = function printAQuote(a) {
     // Get all the Comments
     const allComments = commentsLibrary.allComments();
 
@@ -30,14 +30,14 @@ app.printAQuote = function printAQuote() {
     const selectedQuote = allComments[randomNumber - 1];
 
     // Print the quote to the console
-    console.log(selectedQuote);
+    console.log(a,randomNumber,selectedQuote);
 };
 
 // Function that loops indefinitely, calling the printAQuote function as it goes
 
 app.indefiniteLoop = function indefiniteLoop() {
     // Create the interval, using the config variable defined above
-    setInterval(app.printAQuote, app.config.timeBetweenComments);
+    setInterval(app.printAQuote, app.config.timeBetweenComments,'comment');
 };
 
 // call the loop function
