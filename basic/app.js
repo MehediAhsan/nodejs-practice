@@ -8,25 +8,25 @@ const fs = require('fs')
 
 const server = http.createServer((req, res)=>{
     if(req.url == '/'){
-        // res.writeHead(200,{'content-type':'text/html'})
-        // res.write('<p>Hi vai</p>')
+        res.writeHead(200,{'content-type':'text/html'})
+        res.write('<p>Hi vai</p>')
 
-        fs.readFile('data.txt',(err, data) => {
-            if(err){
-                res.write('Faile');
-                res.end()
-            }
-            else{
-                res.write(data)
-                res.end()
-            }
-        })
+        // fs.readFile('data.txt',(err, data) => {
+        //     if(err){
+        //         res.write('Faile');
+        //         res.end()
+        //     }
+        //     else{
+        //         res.write(data)
+        //         res.end()
+        //     }
+        // })
 
-        fs.writeFile('data.txt', 'How are you!', err => {
-            if(err){
-                res.write()
-            }
-        })
+        // fs.writeFile('data.txt', 'How are you!', err => {
+        //     if(err){
+        //         res.write()
+        //     }
+        // })
 
 
         // res.end()
@@ -43,7 +43,7 @@ const server = http.createServer((req, res)=>{
     // console.log(parsed_add.query)
 });
 
-fs.createReadStream()
+// fs.createReadStream()
 
 const port = 5000;
 server.listen(port);
