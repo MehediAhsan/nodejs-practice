@@ -1,51 +1,29 @@
-// const {add} = require('./add');
+/*
+ * Name : Create a raw node app
+*/
 
-// console.log(add(2,3));
-
+// dependencies
 const http = require('http');
-const url = require('url');
-const fs = require('fs')
+const { serverResponse } = require('./handleServer/serverResponse');
 
-const server = http.createServer((req, res)=>{
-    if(req.url == '/'){
-        // res.writeHead(200,{'content-type':'text/html'})
-        // res.write('<p>Hi vai</p>')
+// app object (module scaffolding)
+const app = {};
 
-        fs.readFile('data.txt',(err, data) => {
-            if(err){
-                res.write('Faile');
-                res.end()
-            }
-            else{
-                res.write(data)
-                res.end()
-            }
-        })
+// configuration
+app.config = {
+    port: 3000,
+};
 
-        fs.writeFile('data.txt', 'How are you!', err => {
-            if(err){
-                res.write()
-            }
-        })
+// create server
+app.createServer = () => {
+    const server = http.createServer(app.serverResponse);
+    server.listen(app.config.port, () => {
+        console.log(`Server running on port ${app.config.port}`);
+    });
+};
 
+// handle Request Response
+app.serverResponse = serverResponse;
 
-        // res.end()
-    }
-
-    else if(req.url == '/product'){
-        res.writeHead(200,{'content-type':'application/json'})
-        res.end(JSON.stringify({id:1,name:'watch',price:20}))
-    }
-
-    // const address = 'http://localhost:5000/product?name=mehedi&roll=2501'
-
-    // const parsed_add = url.parse(address,true)
-    // console.log(parsed_add.query)
-});
-
-fs.createReadStream()
-
-const port = 5000;
-server.listen(port);
-
-console.log(`server running at ${port}`);
+// start server
+app.createServer();
