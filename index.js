@@ -5,20 +5,16 @@
 // dependencies
 const http = require('http');
 const { serverResponse } = require('./handleServer/serverResponse');
+const environment = require('./handleServer/environments');
 
 // app object (module scaffolding)
 const app = {};
 
-// configuration
-app.config = {
-    port: 3000,
-};
-
 // create server
 app.createServer = () => {
     const server = http.createServer(app.serverResponse);
-    server.listen(app.config.port, () => {
-        console.log(`Server running on port ${app.config.port}`);
+    server.listen(environment.port, () => {
+        console.log(`Server running on port ${environment.port}`);
     });
 };
 
