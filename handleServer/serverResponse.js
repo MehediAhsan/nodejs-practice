@@ -51,10 +51,7 @@ handleServer.serverResponse = (req, res) => {
             res.end(payloadString);
         });
     
-
-        console.log(realData);
         // response handle
-        res.end('Hello world');
     });
 };
 
