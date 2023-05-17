@@ -6,9 +6,16 @@
 const http = require('http');
 const { serverResponse } = require('./handleServer/serverResponse');
 const environment = require('./handleServer/environments');
+const data = require('./crudlib/crudData');
 
 // app object (module scaffolding)
 const app = {};
+
+// testing insert or create data
+
+data.create('product','newProduct',{name:'Phone' , price:'20'}, (err) => {
+    console.log('The err', err)
+});
 
 // create server
 app.createServer = () => {
