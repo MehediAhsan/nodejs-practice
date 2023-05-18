@@ -12,9 +12,13 @@ const data = require('./crudlib/crudData');
 const app = {};
 
 // testing insert or create data
+// data.create('product','newProduct',{name:'Phone' , price:'20'}, (err) => {
+//     console.log('The err', err)
+// });
 
-data.create('product','newProduct',{name:'Phone' , price:'20'}, (err) => {
-    console.log('The err', err)
+// testing for read data
+data.read('product','newProduct', (err, data) => {
+    console.log(err,data);
 });
 
 // create server

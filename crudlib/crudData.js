@@ -37,4 +37,13 @@ crud.create = (dir, file, data, callback) => {
 };
 
 
+// read data from file
+crud.read = (dir, file, callback) => {
+    fs.readFile(`${crud.basedir + dir}/${file}.json`, 'utf8', (err, data) => {
+        callback(err, data);
+    });
+};
+
+
+
 module.exports = crud;
