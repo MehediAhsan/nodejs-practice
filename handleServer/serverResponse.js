@@ -3,6 +3,7 @@ const url = require('url');
 const { StringDecoder } = require('string_decoder');
 const routes = require('../routes');
 const { notFoundHandler } = require('../handleRoutes/notFoundHandler');
+const { parseJSON } = require('./utilities');
 
 // modue scaffolding
 const handleServer = {};
@@ -40,6 +41,8 @@ handleServer.serverResponse = (req, res) => {
     req.on('end', () => {
         realData += decoder.end();
 
+        requestProperties.body = parseJSON(realData);
+
         chosenHandler(requestProperties, (statusCode, payload) => {
             statusCode = typeof statusCode === 'number' ? statusCode : 500;
             payload = typeof payload === 'object' ? payload : {};
@@ -47,6 +50,7 @@ handleServer.serverResponse = (req, res) => {
             const payloadString = JSON.stringify(payload);
     
             // return the final response
+            res.setHeader('Content-Type', 'application/json');
             res.writeHead(statusCode);
             res.end(payloadString);
         });
