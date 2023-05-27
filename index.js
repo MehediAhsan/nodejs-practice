@@ -7,6 +7,7 @@ const http = require('http');
 const { serverResponse } = require('./handleServer/serverResponse');
 const environment = require('./handleServer/environments');
 const data = require('./crudlib/crudData');
+const { sendTwilioSms } = require('./handleServer/notifications');
 
 // app object (module scaffolding)
 const app = {};
@@ -30,6 +31,12 @@ const app = {};
 // data.delete('product','newProduct', (err) => {
 //     console.log(err);
 // });
+
+// checking notification
+
+sendTwilioSms('01929378419', 'Hello world', (err) => {
+    console.log(`this is the error`, err);
+});
 
 // create server
 app.createServer = () => {
