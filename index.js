@@ -3,51 +3,20 @@
 */
 
 // dependencies
-const http = require('http');
-const { serverResponse } = require('./handleServer/serverResponse');
-const environment = require('./handleServer/environments');
-const data = require('./crudlib/crudData');
-const { sendTwilioSms } = require('./handleServer/notifications');
+const server = require('./crudlib/server');
+// const workers = require('./crudlib/worker');
 
-// app object (module scaffolding)
+// app object - module scaffolding
 const app = {};
 
-// testing insert or create data
-// data.create('product','newProduct',{name:'Phone' , price:'20'}, (err) => {
-//     console.log('The err', err)
-// });
-
-// testing for read data
-// data.read('product','newProduct', (err, data) => {
-//     console.log(err,data);
-// });
-
-// testing update data
-// data.update('product','newProduct',{name:'mobile' , price:'50'}, (err) => {
-//     console.log('The err', err)
-// });
-
-// testing for delete data
-// data.delete('product','newProduct', (err) => {
-//     console.log(err);
-// });
-
-// checking notification
-
-sendTwilioSms('01929378419', 'Hello world', (err) => {
-    console.log(`this is the error`, err);
-});
-
-// create server
-app.createServer = () => {
-    const server = http.createServer(app.serverResponse);
-    server.listen(environment.port, () => {
-        console.log(`Server running on port ${environment.port}`);
-    });
+app.init = () => {
+    // start the server
+    server.init();
+    // start the workers
+    // workers.init();
 };
 
-// handle Request Response
-app.serverResponse = serverResponse;
+app.init();
 
-// start server
-app.createServer();
+// export the app
+module.exports = app;
