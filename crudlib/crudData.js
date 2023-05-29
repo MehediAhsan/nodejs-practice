@@ -93,8 +93,8 @@ crud.delete = (dir, file, callback) => {
 };
 
 // list all the items in a directory
-lib.list = (dir, callback) => {
-    fs.readdir(`${lib.basedir + dir}/`, (err, fileNames) => {
+crud.list = (dir, callback) => {
+    fs.readdir(`${crud.basedir + dir}/`, (err, fileNames) => {
         if (!err && fileNames && fileNames.length > 0) {
             const trimmedFileNames = [];
             fileNames.forEach((fileName) => {
